@@ -1,0 +1,26 @@
+
+//SHOULD NOT BE THIS!!!!!!
+class Food{
+    constructor(){
+        this.foodStock;
+        this.image=loadImage("Milk.png");
+    }
+
+    getFoodStock(){
+        var foodStockRef=database.ref("Food");
+        foodStockRef.on("value",function(data){
+            foodStock=data.val();
+        });
+    }
+
+    updateFoodStock(){
+        database.ref("/").update({
+            Food:foodStock-1
+        });
+    }
+
+    deductFood(){
+        database.ref("/").update({
+            Food:foodStock+1
+        });
+    }
